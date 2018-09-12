@@ -34,8 +34,6 @@ public final class PetsController {
         rs
                 .delete("/" + id)
                 .then().contentType(ContentType.JSON).log().all();
-        return rs.get("/" + id + "/")
-                .then().log().all().extract().as(Pet.class);
     }
 
     public static Pet postRequestTest(String pet){
