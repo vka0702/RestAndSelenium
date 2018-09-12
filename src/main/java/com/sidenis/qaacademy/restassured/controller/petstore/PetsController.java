@@ -17,10 +17,23 @@ public final class PetsController {
             .basePath(BASE_PATH)
             .contentType(ContentType.JSON).log().all();
 
-
     public static Pet getPet(Long id) {
-        return rs.get("/" + id + "/")
+        return rs
+                .get("/" + id)
+                .then()
+                .log().all()
+                .extract().as(Pet.class);
+    }
+
+    public static Pet postPet(String pet) {
+        return rs.body(pet)
+                .post()
                 .then().log().all().extract().as(Pet.class);
+    }
+    public static void deletePet (Long id){
+        rs
+                .delete("/" + id)
+                .then().contentType(ContentType.JSON).log().all();
     }
 
     public static Pet postRequestTest(String pet){
