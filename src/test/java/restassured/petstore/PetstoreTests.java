@@ -17,9 +17,36 @@ public class PetstoreTests extends BasePetStoreTest {
     @Test
     @Category({RestTest.class})
     public void testGetPetById() {
-        final Long petId = 7L;
-        String expectedName = "panda";
+        final Long petId = 60L;
+        String expectedName = "elephant";
         Pet pet = PetsController.getPet(petId);
         assertEquals(expectedName, pet.getName());
     }
+
+    @Test
+    public void testPostPet() {
+        String expectedName = "elph";
+        String expectedStatus ="true";
+        PetsController.postPet();
+        Pet pet = PetsController.getPet(57L);
+        assertEquals(expectedName, pet.getName());
+        assertEquals(expectedStatus,pet.getStatus());
+    }
+
+    @Test
+    public void testPostPetById() {
+        final Long petId = 12L;
+        String expectedName="lion";
+        String expectedStatus="xxxx";
+        PetsController.postPetbyId(petId,expectedName,expectedStatus);
+        Pet pet =PetsController.getPet(12L);
+        assertEquals(expectedName, pet.getName());
+        //Pet pet = PetsController.postPet(petId, expectedName, expectedStatus);
+        //assertEquals(expectedName, PetsController);
+
+    }
+
+
+
+
 }

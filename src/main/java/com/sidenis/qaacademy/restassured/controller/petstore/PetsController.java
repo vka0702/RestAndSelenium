@@ -2,9 +2,8 @@ package com.sidenis.qaacademy.restassured.controller.petstore;
 
 import com.sidenis.qaacademy.restassured.vo.petstore.Pet;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.junit.Assert;
-import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
 
@@ -17,17 +16,9 @@ public final class PetsController {
             .basePath(BASE_PATH)
             .contentType(ContentType.JSON).log().all();
 
-    public static Pet getPet(Long id) {
-        return rs
-                .get("/" + id)
-                .then()
-                .log().all()
-                .extract().as(Pet.class);
-    }
 
-    public static Pet postPet(String pet) {
-        return rs.body(pet)
-                .post()
+    public static Pet getPet(Long id) {
+        return rs.get("/" + id + "/")
                 .then().log().all().extract().as(Pet.class);
     }
     public static void deletePet (Long id){
@@ -43,6 +34,32 @@ public final class PetsController {
     public static Pet updatePet(String pet){
         //return rs.body(pet).put("name", "Bob").then().log().all().extract().as(Pet.class);
         return rs.body(pet).put().then().log().all().extract().as(Pet.class);
+    }
+
+
+    public static Pet postPet() {
+        return given().log().all()
+                .basePath("/pet")
+                .contentType(ContentType.JSON)
+                .body("{\n" +
+                        "  \"id\": 57,\n" +
+                        "  \"name\": \"elph\",\n" +
+                        "  \"photoUrls\": [],\n" +
+                        //"  \"tags\": [],\n" +
+                        "  \"status\": \"true\"\n" +
+                        "}")
+                .when().post()
+                .then().extract().as(Pet.class);
+
+    }
+
+    public static Response postPetbyId(Long id, String name, String status) {
+        return given().log().all()
+                .basePath("/pet/"+id+"/").contentType("application/x-www-form-urlencoded")
+                .formParam("name",name)
+                .formParam("status",status)
+                .when().post()
+                .then().log().all().extract().response();
     }
 
     public static Pet[] findStatus(boolean isAvailable, boolean pending, boolean sold){
