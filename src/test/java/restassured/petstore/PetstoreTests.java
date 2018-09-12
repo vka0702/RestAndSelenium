@@ -19,34 +19,34 @@ public class PetstoreTests extends BasePetStoreTest {
     public void testGetPetById() {
         final Long petId = 60L;
         String expectedName = "elephant";
-        Pet pet = PetsController.getPet(petId);
+        Pet pet = PetsController.getPetById(petId);
         assertEquals(expectedName, pet.getName());
     }
 
     @Test
     public void testPostPet() {
+        String body = "{\"id\":57,\"name\":\"elph\",\"photoUrls\":[],\"tags\":[],\"status\":\"true\"}";
         String expectedName = "elph";
-        String expectedStatus ="true";
-        PetsController.postPet();
-        Pet pet = PetsController.getPet(57L);
+        String expectedStatus = "true";
+
+        PetsController.createPet(body);
+        Pet pet = PetsController.getPetById(57L);
         assertEquals(expectedName, pet.getName());
-        assertEquals(expectedStatus,pet.getStatus());
+        assertEquals(expectedStatus, pet.getStatus());
     }
 
     @Test
     public void testPostPetById() {
         final Long petId = 12L;
-        String expectedName="lion";
-        String expectedStatus="xxxx";
-        PetsController.postPetbyId(petId,expectedName,expectedStatus);
-        Pet pet =PetsController.getPet(12L);
+        String expectedName = "lion";
+        String expectedStatus = "xxxx";
+        PetsController.updatePetById(petId, expectedName, expectedStatus);
+        Pet pet = PetsController.getPetById(12L);
         assertEquals(expectedName, pet.getName());
         //Pet pet = PetsController.postPet(petId, expectedName, expectedStatus);
         //assertEquals(expectedName, PetsController);
 
     }
-
-
 
 
 }

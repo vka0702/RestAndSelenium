@@ -11,7 +11,7 @@ import static com.sidenis.qaacademy.common.QALogger.qaLogger;
  */
 public class Constants {
     private static final String PROPERTIES_FILE = "/application.properties";
-    public static final String JENKINS_JOB_NAME;
+    private static final String JENKINS_JOB_NAME;
     public static final String BASE_URI = "";
     public static final String USERNAME;
     public static final String PASSWORD;
@@ -25,9 +25,9 @@ public class Constants {
 
     private static String getProperty(String propertyName) {
         if (isNullOrEmpty(JENKINS_JOB_NAME)) {
-            return System.getProperty(propertyName);
+            return loadProperty(propertyName);
         }
-        return loadProperty(propertyName);
+        return System.getProperty(propertyName);
     }
 
     private static String loadProperty(String propertyName) {
