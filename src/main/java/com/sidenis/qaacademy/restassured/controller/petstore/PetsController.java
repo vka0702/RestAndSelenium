@@ -5,6 +5,8 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.junit.Assert;
+import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.put;
@@ -14,7 +16,9 @@ import static io.restassured.RestAssured.put;
  */
 public final class PetsController {
     private static String BASE_PATH = "/pet";
-    private final static RequestSpecification rs = given().basePath(BASE_PATH).contentType(ContentType.JSON).log().all();
+    private final static RequestSpecification rs = given()
+            .basePath(BASE_PATH)
+            .contentType(ContentType.JSON).log().all();
 
 
     public static Pet getPet(Long id) {
@@ -46,6 +50,33 @@ public final class PetsController {
                 .when().post()
                 .then().extract().as(Pet.class);
 
+    }
+
+    public static Pet postRequestTest(String pet){
+        return rs.body(pet).post().then().log().all().extract().as(Pet.class);
+    }
+
+    public static Pet[] findStatus(boolean isAvailable, boolean pending, boolean sold){
+
+        //return rs.get("findByStatus?status=sold").then().log().all().extract().as(Pet[].class);
+        String status = "findByStatus?status=";
+        if (isAvailable){
+            status += "available";
+            if (pending){
+                status += "&status=pending";
+                if (sold){
+                    status += "&status=sold";
+                }
+            }
+        }
+        if(pending){
+            status += "pending";
+            if(sold){
+                status += "&status=sold";
+            }
+        }
+
+        return rs.get(status).then().log().all().extract().as(Pet[].class);
     }
 
 //    public static Pet getPetWithStatus(boolean available, boolean pending, boolean sold) {
