@@ -15,12 +15,14 @@ public class Constants {
     public static final String BASE_URI = "";
     public static final String USERNAME;
     public static final String PASSWORD;
+    public static final String BROWSER;
 
 
     static {
         JENKINS_JOB_NAME = System.getenv("JOB_NAME");
         USERNAME = getProperty("user.name");
         PASSWORD = getProperty("user.password");
+        BROWSER = getProperty("browser.type");
     }
 
     private static String getProperty(String propertyName) {
