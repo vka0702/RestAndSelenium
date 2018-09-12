@@ -86,7 +86,6 @@
             <version>2.4</version>
         </dependency>
     </dependencies>
-
     <plugins>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>

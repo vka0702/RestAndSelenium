@@ -6,18 +6,18 @@ import java.util.List;
  * Started by ML on 9/10/2018.
  */
 public class Pet {
-    private int id;
+    private Long id;
     private IdNameEntity category;
     private String name;
     private List<String> photoUrls;
     private List<IdNameEntity> tags;
     private String status;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
