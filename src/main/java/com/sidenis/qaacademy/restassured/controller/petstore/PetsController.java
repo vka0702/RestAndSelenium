@@ -11,10 +11,13 @@ import static io.restassured.RestAssured.given;
  */
 public final class PetsController {
     private static String BASE_PATH = "/pet";
-    private final static RequestSpecification rs = given().basePath(BASE_PATH).contentType(ContentType.JSON).log().all();
+    private final static RequestSpecification rs = given()
+            .basePath(BASE_PATH)
+            .contentType(ContentType.JSON).log().all();
 
 
     public static Pet getPet(Long id) {
-        return rs.get("/" + id + "/").then().log().all().extract().as(Pet.class);
+        return rs.get("/" + id + "/")
+                .then().log().all().extract().as(Pet.class);
     }
 }
