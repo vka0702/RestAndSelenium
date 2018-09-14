@@ -4,7 +4,10 @@ import com.sidenis.qaacademy.common.Constants;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class DriverManager {
 
     private static final String PATH_TO_FF_BINARY = "C:/Program Files/Mozilla Firefox/firefox.exe";
-    private static final String PATH_TO_CHROME_BINARY = "src/main/resources/geckodriver.exe";
+    private static final String PATH_TO_CHROME_BINARY = "src/main/resources/chromedriver.exe";
     private static final String PATH_TO_GECKO = "src/main/resources/geckodriver.exe";
     private static final int IMPLICITY_WAIT = 5;
     private static final int PAGE_LOAD_TIMEOUT = 15;
@@ -43,13 +46,13 @@ public class DriverManager {
 //                        addPreference("browser.cache.disk.enable", false);
 //                driver = new FirefoxDriver(options);
 //                break;
-            case "FF_OLD":
-                DesiredCapabilities caps = new DesiredCapabilities();
-                caps.setCapability("browser.cache.disk.enable", false);
-                caps.setCapability("acceptSslCerts", true);
-                caps.setCapability("firefox_binary", PATH_TO_FF_BINARY);
-                driver = new FirefoxDriver();
-                break;
+//            case "FF_OLD":
+//                DesiredCapabilities caps = new DesiredCapabilities();
+//                caps.setCapability("browser.cache.disk.enable", false);
+//                caps.setCapability("acceptSslCerts", true);
+//                caps.setCapability("firefox_binary", PATH_TO_FF_BINARY);
+//                driver = new FirefoxDriver();
+//                break;
             case "CHROME":
                 System.setProperty("webdriver.chrome.driver", PATH_TO_CHROME_BINARY);
                 driver = new ChromeDriver(DesiredCapabilities.chrome());
@@ -66,5 +69,10 @@ public class DriverManager {
         driver.manage().timeouts().implicitlyWait(IMPLICITY_WAIT, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
         driver.manage().timeouts().setScriptTimeout(SCRIPT_TIMEOUT, TimeUnit.SECONDS);
+    }
+
+    public static void waitFor(ExpectedCondition condition) {
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        wait.until(condition);
     }
 }

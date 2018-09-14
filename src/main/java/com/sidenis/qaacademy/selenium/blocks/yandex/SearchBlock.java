@@ -27,4 +27,5 @@ public class SearchBlock extends HtmlElement {
     @Name("Sample hint")
     @FindBy(css = "span.home-arrow__sample-first-word")
     public List<Button> sample;
+
 }

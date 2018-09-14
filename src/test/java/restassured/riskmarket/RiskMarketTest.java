@@ -2,6 +2,7 @@ package restassured.riskmarket;
 
 import com.sidenis.qaacademy.common.BaseRiskMarketTest;
 import com.sidenis.qaacademy.restassured.controller.riskmarket.InternalController;
+import com.sidenis.qaacademy.restassured.controller.riskmarket.RiskmarketController;
 import io.restassured.RestAssured;
 import org.junit.Test;
 
@@ -15,7 +16,7 @@ public class RiskMarketTest extends BaseRiskMarketTest {
 
     @Test
     public void TestRiskMarketCookie(){
-        System.out.println(InternalController.takeMeFull());
+        System.out.println();
     }
 
     @Test
@@ -25,6 +26,6 @@ public class RiskMarketTest extends BaseRiskMarketTest {
 
     @Test
     public void TestGetCurrentUserEmail() {
-        System.out.println(InternalController.getCurrntUserEmail());
+        System.out.println(InternalController.getCurrentUser());
     }
 }

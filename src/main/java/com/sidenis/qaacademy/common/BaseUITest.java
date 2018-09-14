@@ -1,5 +1,7 @@
 package com.sidenis.qaacademy.common;
 
+import com.sidenis.qaacademy.selenium.DriverManager;
+import com.sidenis.qaacademy.selenium.pageobject.YandexMainPage;
 import org.apache.commons.io.FileUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -21,6 +23,7 @@ import java.time.LocalDate;
 import static com.sidenis.qaacademy.common.QALogger.log;
 import static com.sidenis.qaacademy.selenium.DriverManager.createDriver;
 import static java.util.concurrent.TimeUnit.MINUTES;
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
  * Started by ML on 9/8/2018.

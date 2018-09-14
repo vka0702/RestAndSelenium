@@ -9,7 +9,7 @@ public class YandexMusicPage {
     public YandexMusicSearchBlock yandexMusicSearchBlock;
 
     public static YandexMusicPage open() {
-        getDriver().get("https://music.yandex.ru/home");
+        getDriver().get("https://music.yandex.ru");
         return new YandexMusicPage();
     }
 
