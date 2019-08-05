@@ -74,5 +74,6 @@ public class DriverManager {
     public static void waitFor(ExpectedCondition condition) {
         WebDriverWait wait = new WebDriverWait(driver, 3);
         wait.until(condition);
+        //wait.until(condition);
     }
 }
